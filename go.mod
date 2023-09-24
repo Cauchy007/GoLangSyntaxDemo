@@ -1,3 +1,3 @@
-module github.com/Cauchy007/learn_go
+module main
 
 go 1.19
