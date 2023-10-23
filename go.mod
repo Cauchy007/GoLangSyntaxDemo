@@ -1,3 +1,3 @@
-module github.com/Cauchy007/learn_go
+module github.com/Cauchy007/GoLangSyntaxDemo
 
 go 1.19

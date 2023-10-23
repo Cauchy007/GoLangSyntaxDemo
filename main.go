@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	cmd "github.com/Cauchy007/learn_go/hello"
-	cmd_new "github.com/Cauchy007/learn_go/hello/hello_new"
+	cmd "github.com/Cauchy007/GoLangSyntaxDemo/hello"
+	cmd_new "github.com/Cauchy007/GoLangSyntaxDemo/hello/hello_new"
 	"os"
 )
 
