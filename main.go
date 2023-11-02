@@ -1,12 +1,6 @@
 package main
 
-import (
-	"flag"
-	"fmt"
-	cmd "github.com/Cauchy007/GoLangSyntaxDemo/hello"
-	cmd_new "github.com/Cauchy007/GoLangSyntaxDemo/hello/hello_new"
-	"os"
-)
+import basic_syntax "github.com/Cauchy007/GoLangSyntaxDemo/BasicSyntax"
 
 var name string
 
@@ -14,16 +8,16 @@ func init() {
 	name = "cauchy"
 }
 
+// 调用BasicSyntax package中的FunctionExample函数
+func BasicSyntaxExample() {
+	basic_syntax.BasicSyntax()
+	basic_syntax.ExampleConstant()
+	basic_syntax.ExampleExpression()
+	basic_syntax.ExampleVariable()
+	basic_syntax.ExampleInterface()
+	basic_syntax.ExampleFunction()
+}
+
 func main() {
-	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage of %s:\n", "question1234567890")
-		flag.PrintDefaults()
-	}
-
-	flag.StringVar(&name, "name", "cauchy", "help message for name")
-	flag.Parse()
-
-	fmt.Print(cmd.Hello(name))
-	cmd_new.HelloNew()
-
+	BasicSyntaxExample()
 }
