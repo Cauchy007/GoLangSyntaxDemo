@@ -1,42 +1,60 @@
 package basic_syntax
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
-func BasicSyntax() {
-	println("BasicSyntax")
+func getCallerFunctionName() {
+	pc, _, _, ok := runtime.Caller(1)
+	if !ok {
+		return
+	}
+	fn := runtime.FuncForPC(pc)
+	if fn == nil {
+		return
+	}
+
+	fmt.Println(fn.Name())
 }
 
 var globalVariable string = "global variable"
 
 // globalVariable2 := "global variable2"  error: non-declaration statement outside function body
 func ExampleVariable() {
-	// 1. 变量声明
-	fmt.Print(globalVariable)
+	getCallerFunctionName()
+	// 1. 全局变量
+	fmt.Print("打印全局变量：", globalVariable)
 	//fmt.Print(globalVariable2)
 
-	// 2. 变量赋值
+	// 2. 局部变量申明和赋值
 	localVariable1 := "local variable1"
 	var localVariable2 = "local variable2"
-	fmt.Print(localVariable1)
-	fmt.Print(localVariable2)
+	fmt.Print("打印局部变量：", localVariable1)
+	fmt.Print("打印局部变量：", localVariable2)
 
 	{
-		localVariable3 := "local variable3"
-		fmt.Print(localVariable3)
+		//3. 变量作用域，此处的localVariable2与上面的localVariable2不是同一个变量
+		localVariable2 := 4
+		fmt.Print(localVariable2)
 	}
-}
 
-func ExampleConstant() {
-	// 1. 常量声明
+	// 4. 常量申明
 	const constant1 = "constant1"
+	//constant1 = "constant1" // error: cannot assign to constant
 	const constant2 string = "constant2"
+	const constant3, constant4 = 3, 4
 	fmt.Print(constant1)
 	fmt.Print(constant2)
+	fmt.Print(constant3)
+	fmt.Print(constant4)
 }
 
 func ExampleExpression() {
+	getCallerFunctionName()
 	// 1. if表达式
 	ExampleIf := func(x int) {
+		getCallerFunctionName()
 		if x > 0 {
 			fmt.Println("1 > 0")
 		} else if x < 0 {
@@ -49,6 +67,7 @@ func ExampleExpression() {
 
 	// 2. switch表达式
 	ExampleSwitch := func(x int) {
+		getCallerFunctionName()
 		switch x {
 		case 1:
 			fmt.Println("x == 1")
@@ -62,6 +81,7 @@ func ExampleExpression() {
 
 	// 3. for表达式
 	ExampleFor := func() {
+		getCallerFunctionName()
 		for i := 0; i < 10; i++ {
 			fmt.Println(i)
 		}
@@ -89,6 +109,8 @@ func ExampleExpression() {
 }
 
 func ExampleFunction() {
+	getCallerFunctionName()
+
 	// 1. 函数声明
 	ExampleFunction := func(x int, y int) int {
 		return x + y
@@ -110,8 +132,10 @@ func ExampleFunction() {
 }
 
 func ExampleDataStructure() {
+	getCallerFunctionName()
 	// 1. 数组
 	ExampleArray := func() {
+		getCallerFunctionName()
 		var array1 [5]int
 		array2 := [5]int{1, 2, 3, 4, 5}
 		array3 := [...]int{1, 2, 3, 4, 5}
@@ -125,6 +149,7 @@ func ExampleDataStructure() {
 
 	// 2. 切片
 	ExampleSlice := func() {
+		getCallerFunctionName()
 		var slice1 []int
 		slice2 := []int{1, 2, 3, 4, 5}
 		slice3 := make([]int, 5)
@@ -138,6 +163,7 @@ func ExampleDataStructure() {
 
 	// 3. Map
 	ExampleMap := func() {
+		getCallerFunctionName()
 		var map1 map[string]int
 		map2 := map[string]int{"a": 1, "b": 2}
 		map3 := make(map[string]int)
@@ -149,6 +175,7 @@ func ExampleDataStructure() {
 
 	// 4. 结构体
 	ExampleStruct := func() {
+		getCallerFunctionName()
 		type Point struct {
 			x int
 			y int
@@ -164,8 +191,10 @@ func ExampleDataStructure() {
 }
 
 func ExamplePointer() {
+	getCallerFunctionName()
 	// 1. 指针
 	ExamplePointer := func() {
+		getCallerFunctionName()
 		var x int = 1
 		var y *int = &x
 		fmt.Println(x)
@@ -205,6 +234,7 @@ func (c Circle) Name() string {
 }
 
 func ExampleInterface() {
+	getCallerFunctionName()
 	// 1. 接口
 	ExampleInterface := func() {
 		var shape ShapeArea = Rect{2, 3}
