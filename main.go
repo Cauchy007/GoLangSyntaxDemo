@@ -12,6 +12,7 @@ func init() {
 func BasicSyntaxExample() {
 	basic_syntax.ExampleVariable()
 	basic_syntax.ExampleExpression()
+
 	basic_syntax.ExampleDataStructure()
 	basic_syntax.ExamplePointer()
 	basic_syntax.ExampleInterface()
